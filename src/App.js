@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom';
 import Login from './components/Screens/Login';
 import TaskView from '../src/components/Screens/TaskView';
+import FinishedTasks from '../src/components/Screens/FinishedTasks';
 import './App.css';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
 				<Switch>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/tasks" component={Protected(TaskView)} />
-					<Redirect from="/" to="/tasks" />
+					<Route exact path="/tasks/finished" component={Protected(FinishedTasks)} />
+					<Redirect exact from="/" to="/tasks" />
 				</Switch>
 			</AuthorizeFirst>
 		</Router>
@@ -23,7 +25,7 @@ function App() {
 axios.interceptors.request.use(
 	function(config) {
 		const accessToken = window.localStorage['token'];
-		console.log('before request', accessToken);
+		// console.log('before request', accessToken);
 		if (accessToken) {
 			config.headers['Authorization'] = `Bearer ${accessToken}`;
 		}
@@ -41,22 +43,17 @@ const AuthorizeFirst = withRouter(({ children, history }) => {
 		setIsFinished
 	] = React.useState(false);
 
-	React.useEffect(
-		() => {
-			axios
-				.post('http://localhost:3200/api/auth/authenticate')
-				.then(() => {
-					setIsFinished(true);
-				})
-				.catch(() => {
-					delete window.localStorage.token;
-					setIsFinished(true);
-				});
-		},
-		[
-			history
-		]
-	);
+	React.useEffect(() => {
+		axios
+			.post('http://localhost:3200/api/auth/authenticate')
+			.then(() => {
+				setIsFinished(true);
+			})
+			.catch(() => {
+				delete window.localStorage.token;
+				setIsFinished(true);
+			});
+	}, []);
 
 	return isFinished ? children : null;
 });

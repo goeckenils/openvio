@@ -1,40 +1,41 @@
 * {
-  padding: 0;
-  margin: 0;
-  font-family: 'Gilroy-Medium';
-  box-sizing: border-box
+	padding: 0;
+	margin: 0;
+	font-family: 'Gilroy-Medium';
+	box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+	height: 100%;
 }
 
 @font-face {
 	font-family: 'Gilroy Regular';
-	src: url('./components/Fonts/Gilroy-Regular.ttf'); 
+	src: url('./components/Fonts/Gilroy-Regular.ttf');
 	font-weight: normal;
 }
 @font-face {
 	font-family: 'Gilroy Medium';
-	src: url('./components/Fonts/Gilroy-Medium.ttf'); 
+	src: url('./components/Fonts/Gilroy-Medium.ttf');
 	font-weight: medium;
 }
 @font-face {
 	font-family: 'Gilroy Bold';
-	src: url('./components/Fonts/Gilroy-Bold.ttf'); 
+	src: url('./components/Fonts/Gilroy-Bold.ttf');
 	font-weight: Bold;
 }
 
 .background {
-  background-image: url("./assets/background.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-  height: 100vh;
+	background-image: url("./assets/background.svg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
 }
 
 .Home {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
 }
